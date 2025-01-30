@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-layout',
-  templateUrl: './Layout.component.html',  
-  styleUrls: ['./Layout.component.css']
+  selector: 'app-add',
+  templateUrl: './add.component.html',
+  styleUrls: ['./add.component.css']
 })
-export class LayoutComponent { 
+export class AddComponent {
+
   constructor(private router: Router) {}
 
   // Obtiene la ruta base (products o brands)
@@ -24,5 +25,4 @@ export class LayoutComponent {
   private capitalize(str: string): string {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
-
 }

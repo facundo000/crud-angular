@@ -1,0 +1,118 @@
+/* Contenedor de la tabla */
+.table-container {
+    position: relative;
+    overflow-x: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+  }
+  
+  /* Tabla estilizada */
+  .styled-table {
+    width: 100%;
+    font-size: 0.875rem;
+    text-align: left;
+    color: #6b7280; /* Texto gris */
+    border-collapse: collapse;
+  }
+  
+  /* Encabezado de la tabla */
+  .styled-table thead {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    background-color: #f9fafb; /* Fondo gris claro */
+    color: #374151; /* Texto gris oscuro */
+  }
+  
+  /* Filas de la tabla */
+  .styled-table tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* Fondo blanco */
+  }
+  
+  .styled-table tbody tr:nth-child(even) {
+    background-color: #f3f4f6; /* Fondo gris claro */
+  }
+  
+  /* Bordes de las filas */
+  .styled-table tbody tr {
+    border-bottom: 1px solid #e5e7eb; /* Borde gris claro */
+  }
+  
+  /* Celdas de la tabla */
+  .styled-table th,
+  .styled-table td {
+    padding: 0.75rem 1.5rem;
+    white-space: nowrap;
+  }
+
+  .delete, .edit {
+    /* background-color: red; */
+    padding: 7px;
+  }
+  
+  
+  /* Texto de las celdas */
+  .styled-table th {
+    font-weight: 500;
+    color: #111827; /* Texto gris oscuro */
+  }
+  
+  .styled-table td {
+    color: #6b7280; /* Texto gris */
+  }
+  
+  /* Enlaces */
+  .styled-table a {
+    font-weight: 500;
+    /*color: #2563eb;  Azul */
+    text-decoration: none;
+  }
+  
+  .styled-table a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Modo oscuro */
+  @media (prefers-color-scheme: dark) {
+    .table-container {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    }
+  
+    .styled-table {
+      color: #9ca3af; /* Texto gris claro */
+    }
+  
+    .styled-table thead {
+      background-color: #374151; /* Fondo gris oscuro */
+      color: #9ca3af; /* Texto gris claro */
+    }
+  
+    .styled-table tbody tr:nth-child(odd) {
+      background-color: #1f2937; /* Fondo gris oscuro */
+    }
+  
+    .styled-table tbody tr:nth-child(even) {
+      background-color: #111827; /* Fondo más oscuro */
+    }
+  
+    .styled-table tbody tr {
+      border-bottom: 1px solid #4b5563; /* Borde gris */
+    }
+  
+    .styled-table th {
+      color: #f9fafb; /* Texto blanco */
+    }
+  
+    .styled-table td {
+      color: #d1d5db; /* Texto gris claro */
+    }
+  
+    
+    .edit{
+        color: #2563eb; /* Azul claro */
+    }
+    .delete{
+        color: rgb(252, 50, 50);
+    }
+    
+  }
+  
