@@ -7,6 +7,12 @@ import { SuppliersComponent } from './components/suppliers/suppliers.component';
 import { NeighborhoodComponent } from './components/neighborhood/neighborhood.component';
 import { AddProductComponent } from './components/add/add-product/add-product.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddBrandsComponent } from './components/add/add-brands/add-brands.component';
+
+import { AddNeighborhoodsComponent } from './components/add/add-neighborhoods/add-neighborhoods.component';
+import { AddSuppliersComponent } from './components/add/add-suppliers/add-suppliers.component';
+import { AddCategorysComponent } from './components/add/add-categores/add-categorys.component';
 
 
 
@@ -18,10 +24,15 @@ import { AppRoutingModule } from '../app-routing.module';
     SuppliersComponent,
     NeighborhoodComponent,
     AddProductComponent,
+    AddBrandsComponent,
+    AddCategorysComponent,
+    AddNeighborhoodsComponent,
+    AddSuppliersComponent,
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   // exports: [
   //   ProductsComponent

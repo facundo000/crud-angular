@@ -1,0 +1,25 @@
+<!-- add-product.component.html -->
+<div class="panel">
+    <h2>Create Category</h2>
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="product-name">Category Name</label>
+            <input type="text" id="product-name" formControlName="name"
+                   placeholder="Enter product name">
+            <div *ngIf="categoryForm.get('name')?.invalid && 
+                      (categoryForm.get('name')?.dirty || categoryForm.get('name')?.touched)"
+                 class="error-message">
+                Product name is required
+            </div>
+        </div>        
+
+        <div class="buttons">
+            <button type="submit" class="save-btn" [disabled]="!categoryForm.valid">
+                <i class="fas fa-save"></i> Save
+            </button>
+            <button type="button" class="cancel-btn" (click)="onCancel()">
+                <i class="fas fa-times"></i> Cancel
+            </button>
+        </div>
+    </form>
+</div>

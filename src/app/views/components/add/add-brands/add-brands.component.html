@@ -1,0 +1,25 @@
+<!-- add-product.component.html -->
+<div class="panel">
+    <h2>Create Brand</h2>
+    <form [formGroup]="brandForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="product-name">Brand Name</label>
+            <input type="text" id="product-name" formControlName="name"
+                   placeholder="Enter product name">
+            <div *ngIf="brandForm.get('name')?.invalid && 
+                      (brandForm.get('name')?.dirty || brandForm.get('name')?.touched)"
+                 class="error-message">
+                Product name is required
+            </div>
+        </div>              
+
+        <div class="buttons">
+            <button type="submit" class="save-btn" [disabled]="!brandForm.valid">
+                <i class="fas fa-save"></i> Save
+            </button>
+            <button type="button" class="cancel-btn" (click)="onCancel()">
+                <i class="fas fa-times"></i> Cancel
+            </button>
+        </div>
+    </form>
+</div>

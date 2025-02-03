@@ -6,6 +6,10 @@ import { CategoryComponent } from './views/components/category/category.componen
 import { SuppliersComponent } from './views/components/suppliers/suppliers.component';
 import { NeighborhoodComponent } from './views/components/neighborhood/neighborhood.component';
 import { AddProductComponent } from './views/components/add/add-product/add-product.component';
+import { AddBrandsComponent } from './views/components/add/add-brands/add-brands.component';
+import { AddCategorysComponent } from './views/components/add/add-categores/add-categorys.component';
+import { AddNeighborhoodsComponent } from './views/components/add/add-neighborhoods/add-neighborhoods.component';
+import { AddSuppliersComponent } from './views/components/add/add-suppliers/add-suppliers.component';
 
 const routes: Routes = [
   { 
@@ -15,10 +19,31 @@ const routes: Routes = [
       { path: 'addProducts', component: AddProductComponent }
     ]
   },
-  { path: 'brands', component: BrandsComponent },
-  { path: 'categories', component: CategoryComponent },
-  { path: 'suppliers', component: SuppliersComponent },
-  { path: 'neighborhoods', component: NeighborhoodComponent },
+  { path: 'brands',
+    component: BrandsComponent,
+    children: [
+      { path: 'addBrands', component: AddBrandsComponent }
+    ]
+  },
+  { path: 'categories',
+    component: CategoryComponent ,
+    children: [
+      { path: 'addCategories', component: AddCategorysComponent }
+    ]
+  },
+  { path: 'suppliers',
+    component: SuppliersComponent ,
+    children: [
+      { path: 'addSuppliers', component:  AddSuppliersComponent}
+    ]
+
+  },
+  { path: 'neighborhoods', 
+    component: NeighborhoodComponent ,
+    children: [
+      { path: 'addNeighborhoods', component: AddNeighborhoodsComponent  }
+    ]
+  },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
 ];
 
