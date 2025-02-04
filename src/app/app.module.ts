@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ViewsModule } from './views/views.module';
 import { LayoutComponent } from './shared/components/Layout/Layout.component';
 import { AddComponent } from './shared/components/add/add.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AddComponent } from './shared/components/add/add.component';
     BrowserModule,
     AppRoutingModule,
     ViewsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
