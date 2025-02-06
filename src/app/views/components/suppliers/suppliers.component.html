@@ -2,7 +2,7 @@
     <table class="styled-table">
       <thead>
         <tr>
-          <th>suplier name</th>
+          <th>supplier name</th>
           <th>Address</th>
           <th>Phone</th>
           <th>Email</th>
@@ -11,61 +11,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">Apple MacBook Pro 17"</th>
-          <td>Silver</td>
-          <td>Laptop</td>
-          <td>$2999</td>
-          <td>av sopa langa</td>
+        <tr *ngFor="let supplier of supplirs">
+          <th scope="row">{{supplier.name}}</th>
+          <td>{{supplier.direction}}</td>
+          <td>{{supplier.phone}}</td>
+          <td>{{supplier.mail || 'No email added'}}</td>
+          <td>{{supplier.id_neighborhood.name}}</td>
           <td>
             <a href="#" class="edit">Edit</a>
             <a href="#" class="delete">Delete</a>
           </td>
-        </tr>
-        <tr>
-          <th scope="row">Microsoft Surface Pro</th>
-          <td>White</td>
-          <td>Laptop PC</td>
-          <td>$1999</td>
-          <td>av sopa langa</td>
-          <td>
-            <a href="#" class="edit">Edit</a>
-            <a href="#" class="delete">Delete</a>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Magic Mouse 2</th>
-          <td>Black</td>
-          <td>Accessories</td>
-          <td>$99</td>
-          <td>av sopa langa</td>
-          <td>
-            <a href="#" class="edit">Edit</a>
-            <a href="#" class="delete">Delete</a>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Google Pixel Phone</th>
-          <td>Gray</td>
-          <td>Phone</td>
-          <td>$799</td>
-          <td>av sopa langa</td>
-          <td>
-            <a href="#" class="edit">Edit</a>
-            <a href="#" class="delete">Delete</a>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Apple Watch 5</th>
-          <td>Red</td>
-          <td>Wearables</td>
-          <td>$999</td>
-          <td>av sopa langa</td>
-          <td>
-            <a href="#" class="edit">Edit</a>
-            <a href="#" class="delete">Delete</a>
-          </td>
-        </tr>        
+        </tr>             
       </tbody>
     </table>
   </div>

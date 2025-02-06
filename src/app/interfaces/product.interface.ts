@@ -1,5 +1,5 @@
-import { Brand } from "./brand";
-import { Category } from "./category";
+import { Brand } from "./brand.interface";
+import { Category } from "./category.interface";
 
 export interface Product {
     cod_product: string;

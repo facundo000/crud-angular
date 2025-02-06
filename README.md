@@ -61,7 +61,7 @@ export interface Product {
 
 
 
-5. Create method GetAll
+5. Method GetAll
 
 ```ts
 import { Injectable } from '@angular/core';
@@ -85,5 +85,60 @@ export class ProductService {
   }
 }
 ```
+Implement in component.ts
 
-6. Implement in component.ts
+```ts
+import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/interfaces/index';
+import { ProductService } from 'src/app/services/product.service';
+
+@Component({
+  selector: 'app-products',
+  templateUrl: './products.component.html',  
+  styleUrls: ['./products.component.css'],
+})
+export class ProductsComponent implements OnInit {
+  
+  public products: Product[] = [];
+  
+  constructor( private productService: ProductService ) {}
+
+  ngOnInit(): void {    
+    this.productService.getAllProducts()
+    .subscribe( products => this.products = products)
+  } 
+  
+}
+```
+implement in component.html
+
+```ts
+<div class="table-container">
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Product name</th>
+        <th>Brand</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <th scope="row">{{ product.description }}</th>
+        <td>{{ product.id_brand.name }}</td>
+        <td>{{ product.id_category.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>
+          <a href="#" class="edit">Edit</a>
+          <a href="#" class="delete">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<router-outlet></router-outlet>
+```
+
+6. Method GetById

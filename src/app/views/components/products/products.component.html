@@ -10,51 +10,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">Apple MacBook Pro 17"</th>
-        <td>Silver</td>
-        <td>Laptop</td>
-        <td>$2999</td>
-        <td>
-          <a href="#" class="edit">Edit</a>
-          <a href="#" class="delete">Delete</a>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">Microsoft Surface Pro</th>
-        <td>White</td>
-        <td>Laptop PC</td>
-        <td>$1999</td>
-        <td>
-          <a href="#" class="edit">Edit</a>
-          <a href="#" class="delete">Delete</a>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">Magic Mouse 2</th>
-        <td>Black</td>
-        <td>Accessories</td>
-        <td>$99</td>
-        <td>
-          <a href="#" class="edit">Edit</a>
-          <a href="#" class="delete">Delete</a>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">Google Pixel Phone</th>
-        <td>Gray</td>
-        <td>Phone</td>
-        <td>$799</td>
-        <td>
-          <a href="#" class="edit">Edit</a>
-          <a href="#" class="delete">Delete</a>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">Apple Watch 5</th>
-        <td>Red</td>
-        <td>Wearables</td>
-        <td>$999</td>
+      <tr *ngFor="let product of products">
+        <th scope="row">{{ product.description }}</th>
+        <td>{{ product.id_brand.name }}</td>
+        <td>{{ product.id_category.name }}</td>
+        <td>{{ product.price }}</td>
         <td>
           <a href="#" class="edit">Edit</a>
           <a href="#" class="delete">Delete</a>
