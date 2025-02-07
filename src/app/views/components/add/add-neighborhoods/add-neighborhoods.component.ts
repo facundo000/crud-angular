@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NeighborhoodService } from '../../../../services/neighborhood.service';
 
 @Component({
   selector: 'app-add-neighborhoods',
@@ -10,7 +11,10 @@ export class AddNeighborhoodsComponent implements OnInit {
 
   neighborhoodForm: FormGroup;
   
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private neighborhoodService: NeighborhoodService
+  ) {
     this.neighborhoodForm = this.fb.group({
       name: ['', Validators.required],
     });
@@ -21,9 +25,18 @@ export class AddNeighborhoodsComponent implements OnInit {
 
   onSubmit() {
     if (this.neighborhoodForm.valid) {
-      console.log('Formulario válido:', this.neighborhoodForm.value);
-      this.onCancel()
-      // Aquí iría la lógica para guardar el producto
+      const formData = { ...this.neighborhoodForm.value }
+      this.neighborhoodService.addNeighborhood(formData).subscribe({
+        next: (response) => {
+          console.log('Vecindario guardado', response);
+          alert('Neighborhood added!');
+          this.onCancel();
+        },
+        error(err) {
+          console.error('Error to add', err)
+        }
+      })
+
     }
   }
 

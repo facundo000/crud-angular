@@ -16,4 +16,8 @@ export class CategoryService {
     getAllCategories(): Observable<Category[]> {
         return this.http.get<Category[]>(`${this.apiUrl}/rubros`);
     }
+
+    addCategory(category: Category): Observable<Category[]> {
+      return this.http.post<Category[]>(`${this.apiUrl}/rubros`, category)
+    }
 }

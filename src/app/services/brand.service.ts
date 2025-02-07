@@ -18,4 +18,8 @@ export class BrandService {
         return this.http.get<Brand[]>(`${ this.apiUrl }/marcas`)
     }
 
+    addBrand(brand: Brand): Observable<Brand[]> {
+      return this.http.post<Brand[]>(`${ this.apiUrl }/marcas`, brand)
+    }
+
 }

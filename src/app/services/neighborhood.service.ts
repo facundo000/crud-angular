@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Neighborhood, Supplier } from '../interfaces/index';
+import { Neighborhood } from '../interfaces/index';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,8 +14,12 @@ export class NeighborhoodService {
 
     constructor(private http: HttpClient) {}
 
-    getAllSuppliers(): Observable<Neighborhood[]> {
+    getAllNeighborhood(): Observable<Neighborhood[]> {
         return this.http.get<Neighborhood[]>(`${ this.apiUrl }/barrios`)
+    }
+
+    addNeighborhood(neighborhood: Neighborhood): Observable<Neighborhood[]> {
+      return this.http.post<Neighborhood[]>(`${ this.apiUrl }/barrios`, neighborhood)
     }
 
 }

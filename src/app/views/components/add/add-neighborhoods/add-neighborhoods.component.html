@@ -3,9 +3,9 @@
     <h2>Create Neighborhood</h2>
     <form [formGroup]="neighborhoodForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-            <label for="product-name">Neighborhood Name</label>
-            <input type="text" id="product-name" formControlName="name"
-                   placeholder="Enter product name">
+            <label for="neighborhood-name">Neighborhood Name</label>
+            <input type="text" id="neighborhood-name" formControlName="name"
+                   placeholder="Enter neighborhood name">
             <div *ngIf="neighborhoodForm.get('name')?.invalid && 
                       (neighborhoodForm.get('name')?.dirty || neighborhoodForm.get('name')?.touched)"
                  class="error-message">

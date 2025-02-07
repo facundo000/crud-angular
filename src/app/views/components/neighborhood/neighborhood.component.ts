@@ -14,7 +14,7 @@ export class NeighborhoodComponent implements OnInit{
   constructor(private neighborhoodService: NeighborhoodService) {}
   
   ngOnInit(): void {
-    this.neighborhoodService.getAllSuppliers().subscribe( neighborhoods => this.neighborhoods = neighborhoods )
+    this.neighborhoodService.getAllNeighborhood().subscribe( neighborhoods => this.neighborhoods = neighborhoods )
   }
 
 }

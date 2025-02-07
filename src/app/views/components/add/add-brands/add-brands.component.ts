@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BrandService } from '../../../../services/brand.service';
 
 @Component({
   selector: 'app-add-brands',
@@ -9,28 +10,40 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddBrandsComponent implements OnInit {
 
   brandForm: FormGroup;
-  brands = ['Apple', 'Microsoft', 'Google', 'Samsung']; // Ejemplo, deberías obtenerlos de un servicio
   
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private brandService: BrandService
+  ) {
     this.brandForm = this.fb.group({
       name: ['', Validators.required],
     });
   }
   ngOnInit(): void {
-    // Aquí deberías cargar las marcas y categorías reales desde un servicio
+    
   }
 
   onSubmit() {
     if (this.brandForm.valid) {
-      console.log('Formulario válido:', this.brandForm.value);
+      
+      const formData = { ...this.brandForm.value }
+      this.brandService.addBrand(formData)
+      .subscribe({
+        next: (response) => {
+          console.log('Marca Guardada!', response);
+          alert('Saved successfully');
+          this.onCancel()
+        },
+        error: (err) => {
+          console.error('Error to add', err)
+        }
+      })
       this.onCancel()
-      // Aquí iría la lógica para guardar el producto
     }
   }
 
   onCancel() {
     this.brandForm.reset();
-    // O navegar de vuelta usando el router
   }
 
 }

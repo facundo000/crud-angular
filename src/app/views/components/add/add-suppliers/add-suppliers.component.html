@@ -1,11 +1,10 @@
-<!-- add-product.component.html -->
 <div class="panel">
     <h2>Create Supplier</h2>
     <form [formGroup]="suppliersForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-            <label for="product-name">Supplier Name</label>
-            <input type="text" id="product-name" formControlName="name"
-                   placeholder="Enter product name">
+            <label for="supplier-name">Supplier Name</label>
+            <input type="text" id="supplier-name" formControlName="name"
+                   placeholder="Enter supplier name">
             <div *ngIf="suppliersForm.get('name')?.invalid && 
                       (suppliersForm.get('name')?.dirty || suppliersForm.get('name')?.touched)"
                  class="error-message">
@@ -14,11 +13,11 @@
         </div>
 
         <div class="form-group">
-            <label for="address">Address</label>
-            <input type="text" id="address-name" formControlName="address"
-            placeholder="Enter address">
-            <div *ngIf="suppliersForm.get('address')?.invalid && 
-                      (suppliersForm.get('address')?.dirty || suppliersForm.get('address')?.touched)"
+            <label for="direction">Address</label>
+            <input type="text" id="direction-name" formControlName="direction"
+            placeholder="Enter direction">
+            <div *ngIf="suppliersForm.get('direction')?.invalid && 
+                      (suppliersForm.get('direction')?.dirty || suppliersForm.get('direction')?.touched)"
                  class="error-message">
                  Address is required
             </div>
@@ -26,7 +25,7 @@
 
         <div class="form-group">
             <label for="phone">Phone</label>
-            <input type="text" id="phone-name" formControlName="phone"
+            <input type="number" id="phone-name" formControlName="phone"
             placeholder="Enter phone">
             <div *ngIf="suppliersForm.get('phone')?.invalid && 
                       (suppliersForm.get('phone')?.dirty || suppliersForm.get('phone')?.touched)"
@@ -36,21 +35,21 @@
         </div>
 
         <div class="form-group">
-            <label for="address">Email</label>
-            <input type="email" id="email-name" formControlName="email" 
-            placeholder="Enter email">
-            <div *ngIf="suppliersForm.get('email')?.invalid && 
-                      (suppliersForm.get('email')?.dirty || suppliersForm.get('email')?.touched)"
+            <label for="mail">Email</label>
+            <input type="mail" id="email-name" formControlName="mail" 
+            placeholder="Enter mail">
+            <div *ngIf="suppliersForm.get('mail')?.invalid && 
+                      (suppliersForm.get('mail')?.dirty || suppliersForm.get('mail')?.touched)"
                  class="error-message">
                  Email is required
             </div>
         </div>
 
         <div class="form-group">
-            <label for="neighborhood">Neighborhoods</label>
-            <select id="neighborhood" formControlName="neighborhood">
+            <label for="id_neighborhood">Neighborhoods</label>
+            <select id="id_neighborhood" formControlName="id_neighborhood">
                 <option value="" disabled>Select a neighborhood</option>
-                <option *ngFor="let neighborhoods of neighborhood" [value]="neighborhood">{{neighborhoods}}</option>
+                <option *ngFor="let neighborhood of neighborhoods" [value]="neighborhood.id">{{neighborhood.name}}</option>
             </select>
             <div *ngIf="suppliersForm.get('neighborhood')?.invalid && 
                       (suppliersForm.get('neighborhood')?.dirty || suppliersForm.get('neighborhood')?.touched)"

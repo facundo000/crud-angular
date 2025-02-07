@@ -18,4 +18,8 @@ export class SupplierService {
         return this.http.get<Supplier[]>(`${ this.apiUrl }/proveedores`)
     }
 
+    addSupplier(supplier: Supplier): Observable<Supplier[]> {
+      return this.http.post<Supplier[]>(`${ this.apiUrl }/proveedores`, supplier)
+    }
+
 }
