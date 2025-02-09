@@ -16,13 +16,15 @@ const routes: Routes = [
     path: 'products', 
     component: ProductsComponent,
     children: [
-      { path: 'addProducts', component: AddProductComponent }
+      { path: 'addProducts', component: AddProductComponent },
+      { path: 'update/:id', component: AddProductComponent }
     ]
   },
   { path: 'brands',
     component: BrandsComponent,
     children: [
-      { path: 'addBrands', component: AddBrandsComponent }
+      { path: 'addBrands', component: AddBrandsComponent },
+      { path: 'brands/:id', component: AddBrandsComponent }
     ]
   },
   { path: 'categories',

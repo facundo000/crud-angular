@@ -16,7 +16,7 @@
         <td>{{ product.id_category.name }}</td>
         <td>{{ product.price }}</td>
         <td>
-          <a href="#" class="edit">Edit</a>
+          <a [routerLink]="['update', product.cod_product]" class="edit">Edit</a>
           <a href="#" class="delete">Delete</a>
         </td>
       </tr>

@@ -1,5 +1,5 @@
 <div class="panel">
-    <h2>Create Product</h2>
+    <h2>{{ isEditMode ? 'Edit Product' : 'Create Product'}}</h2>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="product-description">Product Name</label>
@@ -51,7 +51,7 @@
 
         <div class="buttons">
             <button type="submit" class="save-btn" [disabled]="!productForm.valid">
-                <i class="fas fa-save"></i> Save
+                <i class="fas fa-save"></i>{{ isEditMode ? 'Update' : 'Save'}}
             </button>
             <button type="button" class="cancel-btn" (click)="onCancel()">
                 <i class="fas fa-times"></i> Cancel

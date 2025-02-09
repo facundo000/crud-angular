@@ -10,7 +10,7 @@
         <tr *ngFor="let brand of brands">
           <th scope="row">{{brand.name}}</th>
           <td>
-            <a href="#" class="edit">Edit</a>
+            <a [routerLink]="['update', brand.id]" class="edit">Edit</a>
             <a href="#" class="delete">Delete</a>
           </td>
         </tr>
