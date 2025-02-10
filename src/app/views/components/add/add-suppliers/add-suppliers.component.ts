@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmailValidator, FormBuilder, FormGroup, MinLengthValidator, MinValidator, Validators } from '@angular/forms';
+import { switchMap } from 'rxjs';
 import { NeighborhoodService } from '../../../../services/neighborhood.service';
 import { Neighborhood } from 'src/app/interfaces';
 import { SupplierService } from '../../../../services/supplier.service';
@@ -13,12 +15,16 @@ export class AddSuppliersComponent implements OnInit {
 
   suppliersForm: FormGroup;
   public neighborhoods: Neighborhood[] = []
-  //neighborhood = ['Talanga', 'av rokefort', 'san javier', 'Comechingon']; // Ejemplo
+  
+  supplierId: string | null = null;
+  isEditMode:boolean = false;
   
   constructor(
     private fb: FormBuilder,
     private neighborhoodService: NeighborhoodService,
-    private supplierService: SupplierService
+    private supplierService: SupplierService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {
     this.suppliersForm = this.fb.group({
       name: ['', Validators.required],
@@ -29,24 +35,66 @@ export class AddSuppliersComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.neighborhoodService.getAllNeighborhood().subscribe( neighborhoods => this.neighborhoods = neighborhoods )
+    this.supplierId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.isEditMode = !!this.supplierId;
+    
+    this.neighborhoodService.getAllNeighborhood()
+    .subscribe( neighborhoods => this.neighborhoods = neighborhoods )    
+
+    if(this.isEditMode) {
+      this.activatedRoute.params
+      .pipe( 
+        switchMap( ({id}) => this.supplierService.getSupplierById(id) )
+      ).subscribe( supplier => {
+        if(!supplier) {
+          this.router.navigateByUrl('/')
+        }
+
+
+        const formData = {
+          name: supplier?.name,
+          direction: supplier?.direction,
+          phone: supplier?.phone,
+          mail: supplier?.mail,
+          id_neighborhood: supplier?.id_neighborhood ? supplier.id_neighborhood.id : null
+        }
+
+        this.suppliersForm.reset(formData)
+        return;
+      })
+    }
+
   }
 
   onSubmit() {
     if (this.suppliersForm.valid) {
       
-      const formData = { ...this.suppliersForm.value }
+      let formData = { ...this.suppliersForm.value }
 
-      this.supplierService.addSupplier(formData).subscribe({
-        next: (response) => {
-          console.log('proveedor Guardado!', response);
-          alert('Supplier added');
-          this.onCancel()
-        }
-      })
-      this.onCancel()
-      // Aquí iría la lógica para guardar el producto
+      if(this.isEditMode) {
+        this.supplierService.updateSupplier(this.supplierId!, formData)
+        .subscribe({
+          next: () => this.handleSuccess(),
+          error: (err) => this.handleError(err)
+        })
+      } else {
+        this.supplierService.addSupplier(formData).subscribe({
+          next: () => this.handleSuccess(),
+          error: (err) => this.handleError(err)
+        })
+      }
+
     }
+  }
+
+  private handleSuccess(): void {
+    alert('Saved successfully');
+    this.onCancel();
+  }
+
+  private handleError(err: any): void {
+    console.error('Error:', err);
+    // Mostrar mensaje de error al usuario
   }
 
   onCancel() {

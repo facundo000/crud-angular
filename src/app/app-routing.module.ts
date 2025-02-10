@@ -24,19 +24,21 @@ const routes: Routes = [
     component: BrandsComponent,
     children: [
       { path: 'addBrands', component: AddBrandsComponent },
-      { path: 'brands/:id', component: AddBrandsComponent }
+      { path: 'update/:id', component: AddBrandsComponent }
     ]
   },
   { path: 'categories',
     component: CategoryComponent ,
     children: [
-      { path: 'addCategories', component: AddCategorysComponent }
+      { path: 'addCategories', component: AddCategorysComponent },
+      { path: 'update/:id', component: AddCategorysComponent }
     ]
   },
   { path: 'suppliers',
     component: SuppliersComponent ,
     children: [
-      { path: 'addSuppliers', component:  AddSuppliersComponent}
+      { path: 'addSuppliers', component:  AddSuppliersComponent},
+      { path: 'update/:id', component:  AddSuppliersComponent}
     ]
 
   },

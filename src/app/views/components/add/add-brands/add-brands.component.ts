@@ -39,6 +39,13 @@ export class AddBrandsComponent implements OnInit {
           if(!brand) {
             return this.router.navigateByUrl('/');
           }
+
+          const formData = {
+            name: brand.name
+          }
+
+          this.brandForm.patchValue( formData );
+          return;
         }
       )
     }
@@ -46,21 +53,37 @@ export class AddBrandsComponent implements OnInit {
 
   onSubmit() {
     if (this.brandForm.valid) {
+      let formData = { ...this.brandForm.value }
+
+      if(this.isEditMode) {
+        console.log(formData);
+        this.brandService.updateBrand(this.brandId!, formData)
+        .subscribe({
+          next: () => this.handleSuccess(),
+          error: (err) => this.handleError(err)
+        })
+      } else {
+        this.brandService.addBrand(formData)
+        .subscribe({
+          next: () => {
+            this.handleSuccess()
+          },
+          error: (err) => {
+            this.handleError(err)
+          }
+        })
+      }
       
-      const formData = { ...this.brandForm.value }
-      this.brandService.addBrand(formData)
-      .subscribe({
-        next: (response) => {
-          console.log('Marca Guardada!', response);
-          alert('Saved successfully');
-          this.onCancel()
-        },
-        error: (err) => {
-          console.error('Error to add', err)
-        }
-      })
-      this.onCancel()
     }
+  }
+
+  private handleSuccess(): void {
+    alert(`Save Successfully`);
+    this.onCancel();
+  }
+
+  private handleError(err: any): void {
+    console.error('Error', err);
   }
 
   onCancel() {

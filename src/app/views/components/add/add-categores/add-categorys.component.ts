@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryService } from '../../../../services/category.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-add-categorys',
@@ -11,35 +13,71 @@ export class AddCategorysComponent implements OnInit {
 
   categoryForm: FormGroup;
   brands = ['Apple', 'Microsoft', 'Google', 'Samsung']; // Ejemplo, deberías obtenerlos de un servicio
+  categoryId: string | null = null;
+  isEditMode = false;
   
   constructor(
     private fb: FormBuilder,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {
     this.categoryForm = this.fb.group({
       name: ['', Validators.required]
     });
   }
   ngOnInit(): void {
+    this.categoryId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.isEditMode = !!this.categoryId;
 
+    if(this.isEditMode) {
+      this.activatedRoute.params.pipe(
+        switchMap( ({id}) => this.categoryService.getCategoryById(id) )
+      ).subscribe(
+        category => {
+          if(!category) {
+            return this.router.navigateByUrl('/')
+          }
+
+          const formData = {
+            name: category.name
+          }
+
+          this.categoryForm.reset(formData);
+          return
+        }
+      )
+    }
   }
 
   onSubmit() {
     if (this.categoryForm.valid) {
-      const formData = { ...this.categoryForm.value }
-      this.categoryService.addCategory(formData).subscribe({
-        next: (response) => {
-          console.log('rubro guardado', response)
-          alert('saved successfully');
-          this.onCancel();
-        },
-        error(err) {
-          console.error('Error to add', err)
-        }
-      })
-      this.onCancel()
-      // Aquí iría la lógica para guardar el producto
+      let formData = { ...this.categoryForm.value }
+
+      if(this.isEditMode){
+        console.log(formData);
+        this.categoryService.updateCategory(this.categoryId!, formData)
+        .subscribe({
+          next: () => this.handleSuccess(),
+          error: (err) => this.handleError(err)
+        })
+      } else {
+        this.categoryService.addCategory(formData).subscribe({
+          next: () => this.handleSuccess(),
+          error: (err) => this.handleError(err)          
+        })
+      }
+
     }
+  }
+
+  private handleSuccess(): void {
+    alert('Success');
+    this.onCancel()
+  }
+
+  private handleError(err: any): void {
+    console.error('Error',err);
   }
 
   onCancel() {

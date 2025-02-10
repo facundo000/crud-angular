@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Supplier } from '../interfaces/index';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,18 @@ export class SupplierService {
 
     addSupplier(supplier: Supplier): Observable<Supplier[]> {
       return this.http.post<Supplier[]>(`${ this.apiUrl }/proveedores`, supplier)
+    }
+
+    getSupplierById(id: string): Observable<Supplier | undefined> {
+      return this.http.get<Supplier[]>(`${ this.apiUrl }/proveedores/${id}`)
+      .pipe(
+        map(supplier => supplier[0]),
+        catchError(error => of(undefined))
+      )
+    }
+
+    updateSupplier(id: string, supplier: Supplier): Observable<Supplier> {
+      return this.http.patch<Supplier>(`${ this.apiUrl }/proveedores/${id}`, supplier)
     }
 
 }

@@ -1,6 +1,6 @@
 <!-- add-product.component.html -->
 <div class="panel">
-    <h2>Create Category</h2>
+    <h2>{{ isEditMode ? 'Update Category' : 'Create Category'}}</h2>
     <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="product-name">Category Name</label>
@@ -15,7 +15,7 @@
 
         <div class="buttons">
             <button type="submit" class="save-btn" [disabled]="!categoryForm.valid">
-                <i class="fas fa-save"></i> Save
+                <i class="fas fa-save"></i> {{ isEditMode ? 'update' : 'Save'}}
             </button>
             <button type="button" class="cancel-btn" (click)="onCancel()">
                 <i class="fas fa-times"></i> Cancel

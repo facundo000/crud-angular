@@ -18,7 +18,7 @@
           <td>{{supplier.mail || 'No email added'}}</td>
           <td>{{supplier.id_neighborhood.name}}</td>
           <td>
-            <a href="#" class="edit">Edit</a>
+            <a [routerLink]="['update', supplier.cod_prov]" class="edit">Edit</a>
             <a href="#" class="delete">Delete</a>
           </td>
         </tr>             

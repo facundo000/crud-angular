@@ -10,7 +10,7 @@
         <tr *ngFor="let category of categories">
           <th scope="row">{{category.name}}</th>          
           <td>
-            <a href="#" class="edit">Edit</a>
+            <a [routerLink]="['update', category.id_category]" class="edit">Edit</a>
           </td>
         </tr>        
       </tbody>

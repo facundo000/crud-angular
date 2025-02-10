@@ -1,6 +1,6 @@
 <!-- add-product.component.html -->
 <div class="panel">
-    <h2>Create Brand</h2>
+    <h2>{{ isEditMode ? 'Edit Brand' : 'Create Brand'}}</h2>
     <form [formGroup]="brandForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="product-name">Brand Name</label>
@@ -15,7 +15,7 @@
 
         <div class="buttons">
             <button type="submit" class="save-btn" [disabled]="!brandForm.valid">
-                <i class="fas fa-save"></i> Save
+                <i class="fas fa-save"></i>{{isEditMode ? 'Update' : 'Save'}}
             </button>
             <button type="button" class="cancel-btn" (click)="onCancel()">
                 <i class="fas fa-times"></i> Cancel

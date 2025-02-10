@@ -1,5 +1,5 @@
 <div class="panel">
-    <h2>Create Supplier</h2>
+    <h2>{{ isEditMode ? 'Update Supplier' : 'Create Supplier'}}</h2>
     <form [formGroup]="suppliersForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="supplier-name">Supplier Name</label>
@@ -60,7 +60,7 @@
 
         <div class="buttons">
             <button type="submit" class="save-btn" [disabled]="!suppliersForm.valid">
-                <i class="fas fa-save"></i> Save
+                <i class="fas fa-save"></i> {{ isEditMode ? 'Update' : 'Save'}}
             </button>
             <button type="button" class="cancel-btn" (click)="onCancel()">
                 <i class="fas fa-times"></i> Cancel
