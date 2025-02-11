@@ -34,4 +34,11 @@ export class SupplierService {
       return this.http.patch<Supplier>(`${ this.apiUrl }/proveedores/${id}`, supplier)
     }
 
+    deleteCategoryById(id: string): Observable<boolean> {
+      return this.http.delete(`${this.apiUrl}/rubros/${id}`).pipe(
+        map( response => true),
+        catchError( err => of(false))
+      )
+    }
+
 }

@@ -34,4 +34,12 @@ export class ProductService {
   updateProduct(id: string, product: Product): Observable<Product> {
     return this.http.patch<Product>(`${this.apiUrl}/productos/${id}`, product)
   }
+
+  deleteProductById(id: string): Observable<boolean>{
+    return this.http.delete(`${this.apiUrl}/productos/${id}`)
+    .pipe(
+      map( resp => true),
+      catchError( err => of(false))
+    )
+  }
 }

@@ -11,7 +11,7 @@
           <th scope="row">{{brand.name}}</th>
           <td>
             <a [routerLink]="['update', brand.id]" class="edit">Edit</a>
-            <a href="#" class="delete">Delete</a>
+            <a (click)="deleteBrand(brand.id)" class="delete">Delete</a>
           </td>
         </tr>
         

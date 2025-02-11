@@ -17,7 +17,7 @@
         <td>{{ product.price }}</td>
         <td>
           <a [routerLink]="['update', product.cod_product]" class="edit">Edit</a>
-          <a href="#" class="delete">Delete</a>
+          <a (click)="deleteProduct(product.cod_product)" class="delete">Delete</a>
         </td>
       </tr>
     </tbody>

@@ -30,7 +30,7 @@ export class AddSuppliersComponent implements OnInit {
       name: ['', Validators.required],
       direction: ['', Validators.required],
       phone: ['', Validators.required],
-      mail: ['', { nonNullable: true } ],
+      mail: [{ nonNullable: true } ],
       id_neighborhood: ['', Validators.required,],
     });
   }
@@ -49,12 +49,13 @@ export class AddSuppliersComponent implements OnInit {
         if(!supplier) {
           this.router.navigateByUrl('/')
         }
-
-
-        const formData = {
+        
+        const phoneInt: number = parseInt(supplier?.phone ?? '0') || 0;
+                
+        let formData = {
           name: supplier?.name,
           direction: supplier?.direction,
-          phone: supplier?.phone,
+          phone: phoneInt,
           mail: supplier?.mail,
           id_neighborhood: supplier?.id_neighborhood ? supplier.id_neighborhood.id : null
         }
@@ -70,7 +71,7 @@ export class AddSuppliersComponent implements OnInit {
     if (this.suppliersForm.valid) {
       
       let formData = { ...this.suppliersForm.value }
-
+      console.log(formData)
       if(this.isEditMode) {
         this.supplierService.updateSupplier(this.supplierId!, formData)
         .subscribe({

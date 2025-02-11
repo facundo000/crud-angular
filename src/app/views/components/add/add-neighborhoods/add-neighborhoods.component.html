@@ -1,6 +1,6 @@
 <!-- add-product.component.html -->
 <div class="panel">
-    <h2>Create Neighborhood</h2>
+    <h2>{{ isEditMode ? 'Update Neighborhood' : 'Create Neighborhood'}}</h2>
     <form [formGroup]="neighborhoodForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="neighborhood-name">Neighborhood Name</label>
@@ -15,7 +15,7 @@
 
         <div class="buttons">
             <button type="submit" class="save-btn" [disabled]="!neighborhoodForm.valid">
-                <i class="fas fa-save"></i> Save
+                <i class="fas fa-save"></i>{{ isEditMode ? 'Update' : 'Save'}}
             </button>
             <button type="button" class="cancel-btn" (click)="onCancel()">
                 <i class="fas fa-times"></i> Cancel

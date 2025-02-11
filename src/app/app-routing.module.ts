@@ -45,7 +45,8 @@ const routes: Routes = [
   { path: 'neighborhoods', 
     component: NeighborhoodComponent ,
     children: [
-      { path: 'addNeighborhoods', component: AddNeighborhoodsComponent  }
+      { path: 'addNeighborhoods', component: AddNeighborhoodsComponent },
+      { path: 'update/:id', component: AddNeighborhoodsComponent }
     ]
   },
   { path: '', redirectTo: '/products', pathMatch: 'full' },

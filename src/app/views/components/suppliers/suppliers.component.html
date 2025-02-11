@@ -19,7 +19,7 @@
           <td>{{supplier.id_neighborhood.name}}</td>
           <td>
             <a [routerLink]="['update', supplier.cod_prov]" class="edit">Edit</a>
-            <a href="#" class="delete">Delete</a>
+            <a (click)="deleteSupplier(supplier.cod_prov)" class="delete">Delete</a>
           </td>
         </tr>             
       </tbody>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Brand } from '../interfaces/index';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +31,14 @@ export class BrandService {
 
     updateBrand(id: string, brand: Brand): Observable<Brand> {
       return this.http.patch<Brand>(`${ this.apiUrl }/marcas/${id}`, brand)
+    }
+
+    deleteBrandById(id: string): Observable<boolean> {
+      return this.http.delete(`${ this.apiUrl }/marcas/${id}`)
+      .pipe(
+        map( resp => true),
+        catchError( err => of(false))
+      )
     }
 
 }
